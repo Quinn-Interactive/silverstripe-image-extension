@@ -7,7 +7,7 @@
  */
 
 
-class ImageExtension extends Extension {
+class ImageExtension extends DataObjectDecorator {
 
     /**
      * make ResizeByWidth an alias for SetWidth, which is already in Image.php
