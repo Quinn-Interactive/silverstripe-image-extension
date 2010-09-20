@@ -294,6 +294,3 @@ class ImageExtension extends DataObjectDecorator {
 
 
 }
-
-
-?>
