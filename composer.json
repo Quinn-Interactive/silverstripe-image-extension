@@ -17,7 +17,7 @@
 		"issues": "https://github.com/oddnoc/silverstripe-image-extension/issues"
 	},
 	"require": {
-		"silverstripe/framework": "~2.4"
+		"silverstripe/framework": "~3.1"
 	},
 	"extra": {
 		"installer-name": "image-extension"

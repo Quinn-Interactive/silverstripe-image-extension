@@ -2,6 +2,6 @@
 
 Adds convenience routines to the Image class
 
-Version 1.x is for SilverStripe 2.4.x.
+Version 2.x is for SilverStripe 3.1.x.
 
-This is version 1.0.0.
+This is version 2.0.0.
