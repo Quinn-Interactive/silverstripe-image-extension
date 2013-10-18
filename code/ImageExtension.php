@@ -7,7 +7,7 @@
  */
 
 
-class ImageExtension extends DataObjectDecorator {
+class ImageExtension extends DataExtension {
 
     /**
      * make ResizeByWidth an alias for SetWidth, which is already in Image.php
@@ -277,20 +277,37 @@ class ImageExtension extends DataObjectDecorator {
 
 
     /**
-     * Take the image and make a cached version.
-     * Adds passes through Title
-     * Based on Image::getFormattedImage()
-     *
-     * @param string  $format (optional)
-     * @param int     $width  (optional)
-     * @param int     $height (optional)
-     * @return Image
-     */
-    private function getAnnotatedImage($format = null, $width = null, $height = null) {
-        $cached_image = $this->owner->getFormattedImage($format, $width, $height);
-        $cached_image->Title = $this->owner->Title;
-        return $cached_image;
-    }
+	 * Take the image and make a cached version.
+	 * Adds passes through Title
+	 * Based on Image::getFormattedImage()
+	 *
+	 * @param string  $format (optional)
+	 * @param int     $width  (optional)
+	 * @param int     $height (optional)
+	 * @return Image
+	 */
+	private function getAnnotatedImage($format = null, $width = null, $height = null) {
 
+		# only resample if this image is already not the right size
+		if ($width && $height) {
+			if ($this->owner->getWidth() == $width && $this->owner->getHeight() == $height) {
+				return $this->owner;
+			}
+		}
+		else if ($width) {
+			if ($this->owner->getWidth() == $width) {
+				return $this->owner;
+			}
+		}
+		else if ($height) {
+			if ($this->owner->getHeight() == $height) {
+				return $this->owner;
+			}
+		}
+		$cached_image = $this->owner->getFormattedImage($format, $width, $height);
+		if (is_object($cached_image))
+			$cached_image->Title = $this->owner->Title;
+		return $cached_image;
+	}
 
 }
