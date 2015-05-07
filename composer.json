@@ -1,20 +1,20 @@
 {
-	"name": "oddnoc/silverstripe-image-extension",
+	"name": "quinninteractive/silverstripe-image-extension",
 	"description": "Adds convenience routines to the Image class",
 	"type": "silverstripe-module",
-	"homepage": "https://github.com/oddnoc/silverstripe-image-extension",
+	"homepage": "https://github.com/Quinn-Interactive/silverstripe-image-extension",
 	"keywords": ["silverstripe", "framework", "image"],
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "Quinn Interactive, Inc.",
 			"email": "support@quinn.com",
-			"homepage": "http://quinn.com",
+			"homepage": "https://quinn.com",
 			"role": "developer"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/oddnoc/silverstripe-image-extension/issues"
+		"issues": "https://github.com/Quinn-Interactive/silverstripe-image-extension/issues"
 	},
 	"require": {
 		"silverstripe/framework": "~3.1"
