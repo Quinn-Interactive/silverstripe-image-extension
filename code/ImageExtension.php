@@ -171,7 +171,7 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generateResize(GD $gd, $width, $height) {
+    public function generateResize($gd, $width, $height) {
         return $gd->resize($width, $height);
     }
 
@@ -184,7 +184,7 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generatePaddedResize(GD $gd, $width, $height) {
+    public function generatePaddedResize($gd, $width, $height) {
         return $gd->paddedResize($width, $height);
     }
 
@@ -197,7 +197,7 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generateCroppedResize(GD $gd, $width, $height) {
+    public function generateCroppedResize($gd, $width, $height) {
         return $gd->croppedResize($width, $height);
     }
 
@@ -210,7 +210,7 @@ class ImageExtension extends DataExtension {
      * @param int     $height
      * @return GD
      */
-    public function generateResizeRatio(GD $gd, $width, $height) {
+    public function generateResizeRatio($gd, $width, $height) {
         return $gd->resizeRatio($width, $height);
     }
 
@@ -222,7 +222,7 @@ class ImageExtension extends DataExtension {
      * @param int     $angle
      * @return GD
      */
-    public function generateRotate(GD $gd, $angle) {
+    public function generateRotate($gd, $angle) {
         return $gd->rotate($angle);
     }
 
@@ -236,7 +236,7 @@ class ImageExtension extends DataExtension {
      * @param unknown $height
      * @return unknown
      */
-    public function generateTopCroppedResize(GD $gd, $width, $height) {
+    public function generateTopCroppedResize($gd, $width, $height) {
 
         # resize
         $gd = $gd->resizeByWidth($width);
@@ -251,7 +251,7 @@ class ImageExtension extends DataExtension {
 
 
     /*
-    public function generateCrop(GD $gd, $top, $left, $width, $height) {
+    public function generateCrop($gd, $top, $left, $width, $height) {
         return $gd->crop($top, $left, $width, $height);
     }
     */
