@@ -20,7 +20,7 @@ Upgrade notes for going from QI Image Extension to SS 3.2+ Image:
 	TopCroppedResize() ->  [no replacement; use ImageExtension]  
 ```  
 
-NOTE: also need to replace QIImageExtension argument format with SS3.2+ format, e.g.:   
+NOTE: also need to replace ImageExtension argument format with SS3.2+ format, e.g.:   
 
 ```
 MyImage.CroppedResize('200x200') -> MyImage.Fill(200,200)
