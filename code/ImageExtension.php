@@ -1,6 +1,6 @@
 <?php
 /**
- * QIImageExtension.php.
+ * ImageExtension.php.
  *
  * @author Quinn Interactive, Inc.
  */
@@ -8,11 +8,11 @@
 /**
  * StartGeneratedWithDataObjectAnnotator
  * 
- * @property Image|QIImageExtension $owner
+ * @property Image|ImageExtension $owner
  * 
  * EndGeneratedWithDataObjectAnnotator
  */
-class QIImageExtension extends DataExtension
+class ImageExtension extends DataExtension
 {
     # added to make sure thumbnail shows up in UploadField
     private static $summary_fields = array(
