@@ -1,242 +1,48 @@
 <?php
 /**
- * ImageExtension.php
+ * QIImageExtension.php.
  *
  * @author Quinn Interactive, Inc.
- * @package ImageExtension
  */
 
-
-class ImageExtension extends DataExtension {
+/**
+ * StartGeneratedWithDataObjectAnnotator
+ * 
+ * @property Image|QIImageExtension $owner
+ * 
+ * EndGeneratedWithDataObjectAnnotator
+ */
+class QIImageExtension extends DataExtension
+{
+    # added to make sure thumbnail shows up in UploadField
+    private static $summary_fields = array(
+        'StripThumbnail' => 'Thumbnail',
+        'Name' => 'Name',
+        'Title' => 'Title',
+    );
 
     /**
-     * make ResizeByWidth an alias for SetWidth, which is already in Image.php
-     * our version annotates with Title
+     * Resizes and crops an image to the top of the image.
      *
-     * @param int     $width
+     * @param $width
+     * @param $height
+     *
      * @return Image
      */
-    public function ResizeByWidth($width) {
-        return $this->getAnnotatedImage('SetWidth', $width);
+    public function TopCroppedImage($width, $height)
+    {
+        return $this->owner->getFormattedImage('TopCroppedImage', $width, $height);
     }
 
-
     /**
-     * make ResizeByHeight an alias for SetHeight, which is already in Image.php
-     * our version annotates with Title
-     *
-     * @param unknown $height
-     * @return Image
-     */
-    public function ResizeByHeight($height) {
-        return $this->getAnnotatedImage('SetHeight', $height);
-    }
-
-
-    /**
-     * override built in Image function SetWidth
-     *
-     * @param int     $width
-     * @return Image
-     */
-    public function SetWidth($width) {
-        return $this->getAnnotatedImage('SetWidth', $width);
-    }
-
-
-    /**
-     * override built in Image function SetHeight
-     *
-     * @param unknown $height
-     * @return Image
-     */
-    public function SetHeight($height) {
-        return $this->getAnnotatedImage('SetHeight', $height);
-    }
-
-
-    /**
-     * override built in Image function SetSize
-     *
-     * @param string  $size width and height like: '100x200'
-     * @return Image
-     */
-    public function SetSize($size) {
-        list($width, $height) = preg_split('/\D/', $size);
-        return $this->getAnnotatedImage('SetSize', $width, $height);
-    }
-
-
-    /**
-     * Very basic resize, just skews the image if necessary
-     * uses $gd->resize(width,height)
-     *
-     * @param string  $size width and height like: '100x200'
-     * @return Image
-     */
-    public function Resize($size) {
-        list($width, $height) = preg_split('/\D/', $size);
-        return $this->getAnnotatedImage('Resize', $width, $height);
-    }
-
-
-    /**
-     * Adds additional padding if necessary after resizing to width height.
-     * uses $gd->paddedResize(width,height)
-     *
-     * @param string  $size width and height like: '100x200'
-     * @return Image
-     */
-    public function PaddedResize($size) {
-        list($width, $height) = preg_split('/\D/', $size);
-        return $this->getAnnotatedImage('PaddedResize', $width, $height);
-    }
-
-
-    /**
-     * Resizes then crops the image from the centre, to the given width and height.
-     * uses $gd->croppedResize(width,height)
-     *
-     * @param string  $size width and height like: '100x200'
-     * @return Image
-     */
-    public function CroppedResize($size) {
-        list($width, $height) = preg_split('/\D/', $size);
-        return $this->getAnnotatedImage('CroppedResize', $width, $height);
-    }
-
-
-    /**
-     * Resizes an image with a maximum width and height
-     * uses $gd->resizeRatio(width,height)
-     *
-     * @param string  $size width and height like: '100x200'
-     * @return Image
-     */
-    public function ResizeRatio($size) {
-        list($width, $height) = preg_split('/\D/', $size);
-        return $this->getAnnotatedImage('ResizeRatio', $width, $height);
-    }
-
-
-    /**
-     * Resizes and crops an image to the top of the image
-     *
-     * @param string  $size width and height like: '100x200'
-     * @return Image
-     */
-    public function TopCroppedResize($size) {
-        list($width, $height) = preg_split('/\D/', $size);
-        return $this->getAnnotatedImage('TopCroppedResize', $width, $height);
-    }
-
-
-    /**
-     * Rotates an image to a particular angle
-     * uses $gd->rotate(angle)
-     *
-     * @param int     $angle
-     * @return Image
-     */
-    public function Rotate($angle) {
-        return $this->getAnnotatedImage('Rotate', $angle);
-    }
-
-
-    /**
-     * Crop's part of image.
-     * top y position of left upper corner of crop rectangle
-     * left x position of left upper corner of crop rectangle
-     * width rectangle width
-     * height rectangle height
-     * uses:  function crop($top, $left, $width, $height)
-     *
-     * @param string  $size
-     * @return Image
-     */
-    //     public function Crop($size) {
-    //         list($top, $left, $width, $height) = preg_split('/\D/', $size);
-    //         return $this->getAnnotatedImage('Crop', $top, $left, $width, $height);
-    //     }
-
-    //------------------------------------------------------------------------------------------//
-    // Custom Generators
-
-
-    /**
-     *
-     *
-     * @param object  $gd
-     * @param int     $width
-     * @param int     $height
-     * @return GD
-     */
-    public function generateResize($gd, $width, $height) {
-        return $gd->resize($width, $height);
-    }
-
-
-    /**
-     *
-     *
-     * @param object  $gd
-     * @param int     $width
-     * @param int     $height
-     * @return GD
-     */
-    public function generatePaddedResize($gd, $width, $height) {
-        return $gd->paddedResize($width, $height);
-    }
-
-
-    /**
-     *
-     *
-     * @param object  $gd
-     * @param int     $width
-     * @param int     $height
-     * @return GD
-     */
-    public function generateCroppedResize($gd, $width, $height) {
-        return $gd->croppedResize($width, $height);
-    }
-
-
-    /**
-     *
-     *
-     * @param object  $gd
-     * @param int     $width
-     * @param int     $height
-     * @return GD
-     */
-    public function generateResizeRatio($gd, $width, $height) {
-        return $gd->resizeRatio($width, $height);
-    }
-
-
-    /**
-     *
-     *
-     * @param object  $gd
-     * @param int     $angle
-     * @return GD
-     */
-    public function generateRotate($gd, $angle) {
-        return $gd->rotate($angle);
-    }
-
-
-
-    /**
-     *
-     *
      * @param object  $gd
      * @param unknown $width
      * @param unknown $height
+     *
      * @return unknown
      */
-    public function generateTopCroppedResize($gd, $width, $height) {
+    public function generateTopCroppedImage($gd, $width, $height)
+    {
 
         # resize
         $gd = $gd->resizeByWidth($width);
@@ -247,67 +53,63 @@ class ImageExtension extends DataExtension {
         return $gd;
     }
 
-
-
-
-    /*
-    public function generateCrop($gd, $top, $left, $width, $height) {
-        return $gd->crop($top, $left, $width, $height);
+    public function Ratio()
+    {
+        return $this->owner->getWidth() / $this->owner->getHeight();
     }
-    */
-
-
-    /**
-     *
-     *
-     * @param int     $width  (optional)
-     * @param int     $height (optional)
-     * @return string
-     */
-    function getTag($width = null, $height = null) {
-        if ( file_exists( "../" . $this->owner->Filename ) ) {
-            $url    = $this->owner->URL();
-            $title  = $this->owner->Title;
-            $width  = $width ? $width : $this->owner->Width;
-            $height = $height ? $height : $this->owner->Height;
-            return
-            "<img src=\"$url\" alt=\"$title\" height=\"$height\" width=\"$width\" />";
-        }
+    public function RatioPercent()
+    {
+        return $this->owner->getWidth() / $this->owner->getHeight() * 100;
     }
+    public function InvertedRatio()
+    {
+        return $this->owner->getHeight() / $this->owner->getWidth();
+    }
+    public function InvertedRatioPercent()
+    {
+        return $this->owner->getHeight() / $this->owner->getWidth() * 100;
+    }
+    public function RatioLessThan($ratio)
+    {
+        return $this->Ratio() < $ratio;
+    }
+    public function RatioGreaterThan($ratio)
+    {
+        return $this->Ratio() > $ratio;
+    }
+    public function WiderThan($width)
+    {
+        return $this->owner->getWidth() > $width;
+    }
+    public function WiderThanOrEqual($width)
+    {
+        return $this->owner->getWidth() >= $width;
+    }
+    public function TallerThan($height)
+    {
+        return $this->owner->getHeight() > $height;
+    }
+    public function TallerThanOrEqual($height)
+    {
+        return $this->owner->getHeight() >= $height;
+    }
+    public function Rotate($degrees)
+    {
+        return $this->owner->getFormattedImage('RotateClockwise');
+    }
+    public function generateRotate(GD $gd, $degrees = 90)
+    {
+        return $gd->rotate($degrees);
+    }
+    public function SetQuality($quality)
+    {
+        return $this->owner->getFormattedImage('QualityVariantImage', $quality);
+    }
+    public function generateQualityVariantImage(Image_Backend $backend, $quality)
+    {
+        $new = clone $backend;
+        $new->setQuality($quality);
 
-
-    /**
-	 * Take the image and make a cached version.
-	 * Adds passes through Title
-	 * Based on Image::getFormattedImage()
-	 *
-	 * @param string  $format (optional)
-	 * @param int     $width  (optional)
-	 * @param int     $height (optional)
-	 * @return Image
-	 */
-	private function getAnnotatedImage($format = null, $width = null, $height = null) {
-
-		# only resample if this image is already not the right size
-		if ($width && $height) {
-			if ($this->owner->getWidth() == $width && $this->owner->getHeight() == $height) {
-				return $this->owner;
-			}
-		}
-		else if ($width) {
-			if ($this->owner->getWidth() == $width) {
-				return $this->owner;
-			}
-		}
-		else if ($height) {
-			if ($this->owner->getHeight() == $height) {
-				return $this->owner;
-			}
-		}
-		$cached_image = $this->owner->getFormattedImage($format, $width, $height);
-		if (is_object($cached_image))
-			$cached_image->Title = $this->owner->Title;
-		return $cached_image;
-	}
-
+        return $new;
+    }
 }
