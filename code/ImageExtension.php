@@ -7,9 +7,9 @@
 
 /**
  * StartGeneratedWithDataObjectAnnotator
- * 
+ *
  * @property Image|ImageExtension $owner
- * 
+ *
  * EndGeneratedWithDataObjectAnnotator
  */
 class ImageExtension extends DataExtension
@@ -29,8 +29,7 @@ class ImageExtension extends DataExtension
      *
      * @return Image
      */
-    public function TopCroppedImage($width, $height)
-    {
+    public function TopCroppedImage($width, $height) {
         return $this->owner->getFormattedImage('TopCroppedImage', $width, $height);
     }
 
@@ -41,16 +40,15 @@ class ImageExtension extends DataExtension
      *
      * @return unknown
      */
-    public function generateTopCroppedImage($gd, $width, $height)
+    public function generateTopCroppedImage(Image_Backend $backend, $width, $height)
     {
-
         # resize
-        $gd = $gd->resizeByWidth($width);
+        $backend = $backend->resizeByWidth($width);
 
         # crop to top
-        $gd = $gd->crop(0, 0, $width, $height);
+        $backend = $backend->crop(0, 0, $width, $height);
 
-        return $gd;
+        return $backend;
     }
 
     public function Ratio()
