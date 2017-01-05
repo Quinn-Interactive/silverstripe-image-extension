@@ -17,7 +17,7 @@ Upgrade notes for going from QI Image Extension to SS 3.2+ Image:
 	SetHeight() -> ScaleHeight()  
 	SetSize() -> Pad()  
 	SetWidth() -> ScaleWidth()  
-	TopCroppedResize() ->  [no replacement; use ImageExtension]  
+	TopCroppedResize() ->  [no replacement; use ImageExtension->TopCroppedImage()]  
 ```  
 
 NOTE: If existing ImageExtension's methods arguments (the width and height) are expressed as a string, will need to replace with SS3.2+ format, e.g.:   
