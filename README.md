@@ -8,14 +8,17 @@ Upgrade notes for going from QI Image Extension to SS 3.2+ Image:
   
   
 ```
-	CroppedResize() -> Fill()  
-	PaddedResize() -> Pad()  
+	CroppedResize() -> Fill()
+	CroppedImage() -> Fill()  
+	PaddedResize() -> Pad()
+	PaddedImage() -> Pad()  
 	ResizeByHeight() -> ScaleHeight()  
 	ResizeByWidth() -> ScaleWidth()  
 	ResizeRatio() -> Fit()  
 	Rotate() -> [no replacement; use ImageExtension]  
 	SetHeight() -> ScaleHeight()  
-	SetSize() -> Pad()  
+	SetSize() -> Pad() 
+	SetRatioSize() -> Fit() 
 	SetWidth() -> ScaleWidth()  
 	TopCroppedResize() ->  [no replacement; use ImageExtension->TopCroppedImage()]  
 ```  
