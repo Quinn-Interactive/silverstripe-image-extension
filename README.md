@@ -1,5 +1,7 @@
 # Image Extension
 
+**Note:** This extension is for the obsolete Silverstripe 3 and is itself obsolete and unmaintained. It should not be used.
+
 Adds some convenience routines to the Image class.
 
 - Version 3.x is for SilverStripe 3.2 and above (3.2+).  It removes methods that are already built into the Image method of SilverStripe 3.2+ and retains those that are not (eg, Rotate(), TopCroppedResize()).
